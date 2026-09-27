@@ -1,0 +1,129 @@
+/* ==========================================================================
+   1. MOBILE-FIRST DEFAULT STYLES
+   ========================================================================== */
+
+/* Universal Box Sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Base Smooth Scrolling (Required for "Jump to Top" link) */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+    background-color: #fcfbf7;
+    color: #2b2b2b;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Step 1: One-column grid with a 10px gap between rows & columns */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+/* Figure & Image Defaults */
+figure {
+    margin: 0;
+    padding: 12px;
+    background-color: #f0eae1;
+    border: 2px solid #d4c5b9;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+figcaption {
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   2. MEDIA QUERY 1: TRIGGER AT 772px
+   ========================================================================== */
+@media screen and (min-width: 772px) {
+    /* Change grid to 2 columns */
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Give figures a circular shape */
+    figure {
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    /* Make the last image/figure take up both columns */
+    figure:last-child {
+        grid-column: span 2;
+    }
+}
+
+/* ==========================================================================
+   3. MEDIA QUERY 2: TRIGGER AT 992px
+   ========================================================================== */
+@media screen and (min-width: 992px) {
+    /* Remove border radius completely (make figures square) */
+    figure {
+        border-radius: 0;
+    }
+
+    /* Reset last-child spanning from previous query */
+    figure:last-child {
+        grid-column: auto;
+    }
+
+    /* Every third image/figure takes up both columns */
+    figure:nth-child(3n) {
+        grid-column: span 2;
+    }
+}
+
+/* ==========================================================================
+   4. MEDIA QUERY 3: PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    /* Turn off smooth scrolling when prefers-reduced-motion is enabled */
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ==========================================================================
+   5. MEDIA QUERY 4: PREFERS-COLOR-SCHEME (DARK)
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    figure {
+        /* Dark background for figure containers */
+        background-color: #1e262c;
+
+        /* Light/yellowish text color */
+        color: #fce880;
+
+        /* Black border color */
+        border-color: #000000;
+    }
+}
